@@ -1,0 +1,12 @@
+<dependencies>
+    <dependency>
+        <groupId>org.jpmml</groupId>
+        <artifactId>pmml-evaluator</artifactId>
+        <version>1.6.24</version>
+    </dependency>
+    <dependency>
+        <groupId>org.jpmml</groupId>
+        <artifactId>pmml-xgboost</artifactId>
+        <version>1.6.24</version>
+    </dependency>
+</dependencies>
