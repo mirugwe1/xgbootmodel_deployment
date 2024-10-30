@@ -34,7 +34,6 @@ public class XGBoostPMMLPredictor {
     public Object predict(Map<String, Object> inputData) {
         Map<String, FieldValue> arguments = new HashMap<>();
 
-        // Prepare input fields
         for (InputField inputField : model.getInputFields()) {
             String fieldName = inputField.getName().getValue();
             Object rawValue = inputData.get(fieldName);
@@ -42,10 +41,8 @@ public class XGBoostPMMLPredictor {
             arguments.put(inputField.getName().getValue(), fieldValue);
         }
 
-        // Perform prediction
         Map<String, ?> results = model.evaluate(arguments);
 
-        // Extract the result
         List<TargetField> targetFields = model.getTargetFields();
         Object prediction = results.get(targetFields.get(0).getName().getValue());
 
@@ -55,10 +52,8 @@ public class XGBoostPMMLPredictor {
     public static void main(String[] args) throws Exception {
         String pmmlFilePath = "bestmodel/xgboost_model.pmml";  // Path to your PMML model
 
-        // Create a new predictor instance
         XGBoostPMMLPredictor predictor = new XGBoostPMMLPredictor(pmmlFilePath);
 
-        // Prepare input data
         Map<String, Object> inputData = new HashMap<>();
         inputData.put("sex", 0);
         inputData.put("age_group", 3);
@@ -78,10 +73,8 @@ public class XGBoostPMMLPredictor {
         inputData.put("visits_current_regimen", 0);
         inputData.put("number_visits", 0);
 
-        // Perform prediction
         Object prediction = predictor.predict(inputData);
 
-        // Print the prediction result
         System.out.println("Prediction: " + prediction);
     }
 }
